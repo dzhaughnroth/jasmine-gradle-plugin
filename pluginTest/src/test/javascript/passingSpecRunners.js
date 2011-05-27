@@ -1,0 +1,1 @@
+jasmineGradle.add( "../AnotherRunner.html" );

@@ -1,0 +1,27 @@
+buildscript {
+    repositories {
+	mavenLocal();
+	mavenCentral();
+    }
+    dependencies {
+        classpath "com.github.dzhaughnroth:jasmine-gradle-plugin:${pluginVersion}"
+    }
+}
+
+repositories {
+     mavenLocal();
+     mavenCentral();
+}
+
+task clean( ) << {
+	delete( buildDir );
+        delete( "src/test/javascript" );
+}
+
+task check() {
+}
+
+apply plugin: 'jasmineGradle'
+
+convention.plugins.jasmineGradlePlugin.failBuildOnSpecFailure = false;
+convention.plugins.jasmineGradlePlugin.failBuildOnJslintFailure = false;

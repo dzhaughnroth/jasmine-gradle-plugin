@@ -1,0 +1,30 @@
+buildscript {
+    repositories {
+	mavenLocal();
+	mavenCentral();
+    }
+    dependencies {
+        classpath "com.github.dzhaughnroth:jasmine-gradle-plugin:${pluginVersion}"
+    }
+}
+
+repositories {
+     mavenLocal();
+     mavenCentral();
+}
+
+task clean( ) << {
+	delete( buildDir );
+}
+
+task check() {
+}
+
+apply plugin: 'jasmineGradle'
+
+convention.plugins.jasmineGradlePlugin.failBuildOnSpecFailure = false;
+if ( "${anExclude}".length() > 0 ) {
+	convention.plugins.jasmineGradlePlugin.runnerExcludes.add( "${anExclude}" );
+}
+// meaningless.
+convention.plugins.jasmineGradlePlugin.runnerExcludes.add( "**/Ignored*" );

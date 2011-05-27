@@ -1,0 +1,8 @@
+*~
+bin
+build
+generatorTest/src/test/javascript
+generatorTest/src/test/javascript/lib
+generatorTest/src/test/javascript/SampleSpec.js
+generatorTest/src/test/javascript/SampleSpecRunner.html
+.gradle

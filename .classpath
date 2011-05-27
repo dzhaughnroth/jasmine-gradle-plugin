@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" path="src/main/groovy"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/test/groovy"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/slf4j-api-1.6.1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/.gradle/cache/asm/asm/jars/asm-3.2.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/plugins/gradle-eclipse-1.0-milestone-1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/ant-1.8.2.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/.gradle/cache/asm/asm-tree/jars/asm-tree-3.2.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/gradle-core-1.0-milestone-1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/jroth/.gradle/cache/org.w3c.css/sac/sources/sac-1.3-sources.jar" kind="lib" path="/home/jroth/.gradle/cache/org.w3c.css/sac/jars/sac-1.3.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/.gradle/cache/xerces/xercesImpl/jars/xercesImpl-2.9.1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/jroth/.gradle/cache/net.sourceforge.htmlunit/htmlunit/sources/htmlunit-2.8-sources.jar" kind="lib" path="/home/jroth/.gradle/cache/net.sourceforge.htmlunit/htmlunit/jars/htmlunit-2.8.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/plugins/gradle-jetty-1.0-milestone-1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/plugins/gradle-osgi-1.0-milestone-1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/gradle-ui-1.0-milestone-1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/jroth/.gradle/cache/xalan/xalan/sources/xalan-2.7.1-sources.jar" kind="lib" path="/home/jroth/.gradle/cache/xalan/xalan/jars/xalan-2.7.1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/jroth/.gradle/cache/xml-apis/xml-apis/sources/xml-apis-1.3.04-sources.jar" kind="lib" path="/home/jroth/.gradle/cache/xml-apis/xml-apis/jars/xml-apis-1.3.04.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/.gradle/cache/asm/asm-util/jars/asm-util-3.2.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/ivy-2.2.0.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/.gradle/cache/asm/asm-analysis/jars/asm-analysis-3.2.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/maven-ant-tasks-2.1.1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/commons-io-1.4.jar" exported="true"/>
+	<classpathentry sourcepath="/home/jroth/.gradle/cache/org.apache.httpcomponents/httpcore/sources/httpcore-4.0.1-sources.jar" kind="lib" path="/home/jroth/.gradle/cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.0.1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/gradle-wrapper-1.0-milestone-1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/jroth/.gradle/cache/net.sourceforge.cssparser/cssparser/sources/cssparser-0.9.5-sources.jar" kind="lib" path="/home/jroth/.gradle/cache/net.sourceforge.cssparser/cssparser/jars/cssparser-0.9.5.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/gradle-launcher-1.0-milestone-1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/jroth/.gradle/cache/org.apache.james/apache-mime4j/sources/apache-mime4j-0.6-sources.jar" kind="lib" path="/home/jroth/.gradle/cache/org.apache.james/apache-mime4j/jars/apache-mime4j-0.6.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/plugins/gradle-code-quality-1.0-milestone-1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/jroth/.gradle/cache/commons-logging/commons-logging/sources/commons-logging-1.1.1-sources.jar" kind="lib" path="/home/jroth/.gradle/cache/commons-logging/commons-logging/jars/commons-logging-1.1.1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/asm-all-3.3.1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/commons-collections-3.2.1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/groovy-all-1.7.8.jar" exported="true"/>
+	<classpathentry sourcepath="/home/jroth/.gradle/cache/org.apache.httpcomponents/httpmime/sources/httpmime-4.0.1-sources.jar" kind="lib" path="/home/jroth/.gradle/cache/org.apache.httpcomponents/httpmime/jars/httpmime-4.0.1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/jroth/.gradle/cache/commons-lang/commons-lang/sources/commons-lang-2.4-sources.jar" kind="lib" path="/home/jroth/.gradle/cache/commons-lang/commons-lang/jars/commons-lang-2.4.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/gradle-open-api-1.0-milestone-1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/jroth/.gradle/cache/net.sourceforge.htmlunit/htmlunit-core-js/sources/htmlunit-core-js-2.8-sources.jar" kind="lib" path="/home/jroth/.gradle/cache/net.sourceforge.htmlunit/htmlunit-core-js/jars/htmlunit-core-js-2.8.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/.gradle/cache/asm/asm-commons/jars/asm-commons-3.2.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/gradle-tooling-api-1.0-milestone-1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/plugins/gradle-antlr-1.0-milestone-1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/plugins/gradle-idea-1.0-milestone-1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/.gradle/cache/antlr/antlr/jars/antlr-2.7.7.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/plugins/gradle-maven-1.0-milestone-1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/plugins/gradle-scala-1.0-milestone-1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/jroth/.gradle/cache/net.sourceforge.nekohtml/nekohtml/sources/nekohtml-1.9.14-sources.jar" kind="lib" path="/home/jroth/.gradle/cache/net.sourceforge.nekohtml/nekohtml/jars/nekohtml-1.9.14.jar" exported="true"/>
+	<classpathentry sourcepath="/home/jroth/.gradle/cache/org.apache.httpcomponents/httpclient/sources/httpclient-4.0.1-sources.jar" kind="lib" path="/home/jroth/.gradle/cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.0.1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/jroth/.gradle/cache/commons-collections/commons-collections/sources/commons-collections-3.2.1-sources.jar" kind="lib" path="/home/jroth/.gradle/cache/commons-collections/commons-collections/jars/commons-collections-3.2.1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/jroth/.gradle/cache/commons-io/commons-io/sources/commons-io-1.4-sources.jar" kind="lib" path="/home/jroth/.gradle/cache/commons-io/commons-io/jars/commons-io-1.4.jar" exported="true"/>
+	<classpathentry sourcepath="/home/jroth/.gradle/cache/org.codehaus.groovy/groovy/sources/groovy-1.7.8-sources.jar" kind="lib" path="/home/jroth/.gradle/cache/org.codehaus.groovy/groovy/jars/groovy-1.7.8.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/plugins/gradle-announce-1.0-milestone-1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/plugins/gradle-plugins-1.0-milestone-1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/ant-launcher-1.8.2.jar" exported="true"/>
+	<classpathentry sourcepath="/home/jroth/.gradle/cache/commons-codec/commons-codec/sources/commons-codec-1.4-sources.jar" kind="lib" path="/home/jroth/.gradle/cache/commons-codec/commons-codec/jars/commons-codec-1.4.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/plugins/ant-antlr-1.8.2.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/.gradle/cache/xalan/serializer/jars/serializer-2.7.1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/jroth/env/gradle-1.0-milestone-1/lib/commons-lang-2.6.jar" exported="true"/>
+</classpath>

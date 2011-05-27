@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jasmine Test Runner</title>
+  <link rel="stylesheet" type="text/css" href="lib/jasmine.css">
+  <link rel="stylesheet" type="text/css" href="lib/jasmine-gradle.css">
+  <script type="text/javascript" src="lib/jasmine.js"></script>
+  <script type="text/javascript" src="lib/jasmine-html.js"></script>
+  <script type="text/javascript" src="lib/jquery-1.6.1.min.js"></script>
+  <script type="text/javascript" src="lib/webjslint.js"></script>
+  <script type="text/javascript" src="lib/jasmine-reporters.js"></script>
+  <!-- include source files here... -->
+  <script type="text/javascript" src="../../main/javascript/Some.js"></script>
+  <script type="text/javascript" src="../../main/javascript/Library.js"></script>
+
+  <!-- include spec files here... -->
+  <script type="text/javascript" src="./GoodSpec.js"></script>
+  <script type="text/javascript" src="./BadSpec.js"></script>
+  <script type="text/javascript" src="./LibrarySpec.js"></script>
+
+</head>
+<body>
+
+<script type="text/javascript">
+   jasmine.getEnv().execute();
+</script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,141 @@
+import org.apache.tools.ant.filters.*
+
+buildscript {
+  repositories {
+     mavenCentral()
+  }
+  dependencies {
+     classpath "net.sourceforge.purrpackage:maven-oss-gradle-plugin:1.0"
+  }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'maven-oss'
+
+group = 'com.github.dzhaughnroth'
+version = '0.3'
+
+repositories {
+   mavenCentral();
+}
+
+dependencies {
+  groovy localGroovy()
+  compile "org.codehaus.groovy:groovy:1.7.8"
+  compile gradleApi()
+  compile "net.sourceforge.htmlunit:htmlunit:2.8"
+}
+
+afterEvaluate {
+        def prTasks = sourceSets.all.processResourcesTaskName.collect { tasks[it] };
+        prTasks.each( { it.configure( {
+                        filter( ReplaceTokens, tokens: [version: project.version] )
+        } )
+        } );        
+}
+
+task clearCache() {
+     doFirst {
+        File f = file( "${System.getProperty("user.home")}/.gradle/cache/${project.group}/${project.name}" )
+        println( "Deleting gradle cache at ${f.absolutePath}" );
+        delete( f );
+     }
+
+}
+
+def copyFile( from, to ) {
+    delete to;
+    to << from.text;
+}
+
+task cleanPluginTestArea( type: GradleBuild ) {
+        dependsOn test 
+        dependsOn install
+        dependsOn clearCache
+	dir = "pluginTest"
+	tasks = ["clean", "jasmineGenerate" ]
+	startParameter.projectProperties.put( "pluginVersion", "${version}" );
+	startParameter.projectProperties.put( "anExclude", "" );
+        doLast {
+                assert !file( "${dir}/build" ).exists();
+        }
+}
+
+task pluginNotFailingTestTask( type: GradleBuild ) {
+        dependsOn cleanPluginTestArea
+	dir = "pluginTest"
+	tasks = [ "check"]
+	startParameter.projectProperties.put( "pluginVersion", "${version}" );
+	startParameter.projectProperties.put( "anExclude", "**/MultiRunner.html" );
+        doLast {
+          copyFile( file( "${dir}/build/jasmine-summary.html" ),
+                    file( "${dir}/build/passingPluginTestTask-jasmine-summary.html" ) );
+          checkDir( dir, 0, 0, 1, false );
+        }
+}
+
+task pluginTestTask( type: GradleBuild ) {
+     dependsOn test 
+     dependsOn install
+     dependsOn clearCache
+     dependsOn cleanPluginTestArea
+     dir = "pluginTest"
+     tasks = [ "check"]
+     startParameter.projectProperties.put( "pluginVersion", "${version}" )
+     startParameter.projectProperties.put( "anExclude", "" );
+     doLast {
+          copyFile( file( "${dir}/build/jasmine-summary.html" ),
+                    file( "${dir}/build/failingPluginTestTask-jasmine-summary.html" ) );
+          checkDir( dir, 3, 1, 1, false );
+     }
+}
+
+task generatorTestTask( type: GradleBuild ) {
+        dependsOn test 
+        dependsOn install
+        dependsOn clearCache
+        dir = "generatorTest"
+	tasks = ["clean", "jasmineGenerate", "check"]
+	startParameter.projectProperties.put( "pluginVersion", "${version}" );
+	doLast {
+	  checkDir( dir, 2, 1, 0, true );
+        }
+}
+
+def checkDir( dir, specsFailed, pagesFailed, pagesPassed, jslintFailed ) {
+	def exists = file( "${dir}/build/jasmine.failures" ).exists();
+	assert exists == ( specsFailed > 0)
+	def jslintExists = file( "${dir}/build/jasmine.jslint.failures" ).exists();
+	assert jslintExists == jslintFailed;
+	assert file( "${dir}/build/jasmine" ).exists();
+        assert file( "${dir}/src/test/javascript/lib/MultiRunner.html" ).exists();
+        def f = file( "${dir}/build/jasmine-summary.html" );
+	assert f.exists();
+        def text = f.text;
+             
+        assert specsFailed == (text =~ /Spec.*FAILED/).size();
+        assert pagesFailed == (text =~ /FAILED page/).size();
+        assert pagesPassed == (text =~ /Passed page/).size();
+}
+
+check.dependsOn( pluginTestTask );
+check.dependsOn( pluginNotFailingTestTask );
+check.dependsOn( generatorTestTask );
+pomConfigurator.addDeveloper( "John Roth", "dzhaughnroth@sourceforge.net" )
+pomConfigurator.gnuLicense();
+pomConfigurator.configurePom( {
+    it.pom {      
+       project {
+         name "Jasmine Gradle Plugin"
+         description "For testing javascript"
+         url "http://purrpackage-plugins.sourceforge.net"
+         inceptionYear "2011"
+         scm { // TODO same or other?
+//           url "http://purrpackage.git.sourceforge.net/git/gitweb-index.cgi"
+//           connection "scm:git://purrpackage.git.sourceforge.net/gitroot/purrpackage/purrpackage"
+//           developerConnection "scm:git://purrpackage.git.sourceforge.net/gitroot/purrpackage/purrpackage"
+       }
+    }
+} } );
+
