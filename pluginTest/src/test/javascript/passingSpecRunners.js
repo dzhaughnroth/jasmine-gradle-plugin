@@ -1,1 +1,1 @@
-jasmineGradle.add( "../AnotherRunner.html" );
+jasmineGradle.add( "AnotherRunner.html" );

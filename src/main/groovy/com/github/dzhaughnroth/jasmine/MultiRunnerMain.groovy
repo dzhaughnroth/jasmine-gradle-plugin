@@ -32,25 +32,38 @@ class MultiRunnerMain {
      */
 	public static void main( String[] args ) throws Exception {
 		def main = new MultiRunnerMain();
-		main.run( args );
+        main.run( args );
 	}
 
+    String name;
+    String buildDirName;
 	def summaries = [];
 	File buildDir;
 
-	def run( argv ) {
-		def args = [];
-		args.addAll( argv );
-		def name = args.remove(0);
-		def buildDirName = args.remove(0);
-		buildDir = new File( buildDirName );
+    def run( argv ) {
+        def args = [];
+        args.addAll( argv );
+        def name = args.remove(0);
+        buildDirName = args.remove(0);
+        buildDir = new File( buildDirName );
+        HttpFileServer server = new HttpFileServer( buildDir );
+        try {
+            runAndReport args;
+        }
+        finally {
+            server.destroy();
+        }
+    }
+    
+	def runAndReport( args ) {
 		Date start = new Date();
         File failuresFile = new File( buildDir, FAILURES_FILE_NAME );
         File jslintFailuresFile = new File( buildDir, JSLINT_FAILURES_FILE_NAME );
 		failuresFile.delete();
 		args.each( { 
-			println( "Running ${it}." )
-			runHtmlUnitOnMultiRunner( it ) 
+            def path =  it.substring( buildDir.getAbsolutePath().length() + 1 );
+            println( "Running ${it} with ${path}." )
+			runHtmlUnitOnMultiRunner( "http://localhost:36018/", path ) 
 		} );
 		long elapsed = System.currentTimeMillis() - start.time;
 		File summaryOut = new File( buildDir, "jasmine-summary.html" );
@@ -72,8 +85,8 @@ class MultiRunnerMain {
 		summaries.each { x->
 					li {
 						mkp.yield( "${x.passed ? 'Passed' : 'FAILED'} page " );
-						def relPath = x.file.absolutePath.substring( absBuildPath.length() + 1);
-						def pathToSrc = x.file.absolutePath.substring( jasmineDirPath.length() + 1 );
+						def relPath = x.path;
+						def pathToSrc = "../src/" + x.path; //x.file.absolutePath.substring( jasmineDirPath.length() + 1 );
 						a( href:"../${pathToSrc}" ) { 
 							mkp.yield( "${pathToSrc}" ) }
                         a( href:relPath ) { mkp.yield( "(Build Copy)" ) }
@@ -100,20 +113,18 @@ class MultiRunnerMain {
 
 	}
 
-	String runHtmlUnitOnMultiRunner( String fileName ) {
-		File f = new File( fileName );
-		String uri = f.toURI().toString();
+	String runHtmlUnitOnMultiRunner( String prefix, String path ) {
 		WebClient webClient = new WebClient();
-		HtmlPage page = webClient.getPage( uri );
+		HtmlPage page = webClient.getPage( prefix + path );//uri );
         long now = System.currentTimeMillis();
-        webClient.waitForBackgroundJavaScriptStartingBefore( 10000L );
+        webClient.waitForBackgroundJavaScriptStartingBefore( 30000L );
         long elapsed = System.currentTimeMillis() - now;
-        println( "Took ${elapsed} to run ${fileName}" );
-        report( f, page, elapsed );
+        println( "Took ${elapsed} to run ${prefix}${path}" );
+        report( path, page, elapsed );
 		return page;
 	}
 
-	def report( File f, HtmlPage page, long elapsed ) {
+	def report( String path, HtmlPage page, long elapsed ) {
         ScriptResult sr = page.executeJavaScript( "jasmineGradle.getStatus()" );
         println( "Status: " + sr.getJavaScriptResult() );
         boolean passed = String.valueOf(sr.getJavaScriptResult() ).contains( "passed" );
@@ -131,7 +142,7 @@ class MultiRunnerMain {
             longMsg = "Could not retrieve results as text from ${sr}:" + e;
         }
         println( "VLM: " +  veryLongMsg );
-        File out = new File( f.canonicalPath + ".out" );
+        File out = new File( buildDir, path + ".out" );
         out.write( longMsg );
         out.write( veryLongMsg );
         
@@ -146,10 +157,10 @@ class MultiRunnerMain {
             e.printStackTrace();
             jsLintMessage = "Problem getting JsLint results: " + e;
         }
-        File lintOut = new File( f.canonicalPath + ".jslint" );
+        File lintOut = new File( buildDir, path + ".jslint" );
         lintOut.write( jsLintMessage );
 
-        def summary = [ file:f,
+        def summary = [ path:path,
 				passed:passed,
 				page:page,
                 elapsed:elapsed,
@@ -159,10 +170,10 @@ class MultiRunnerMain {
                 jsLintPassed: jsLintPassed ];
 		summaries.add( summary );
         if ( failed ) {
-			summary.message = "Spec failures in ${f}";
+			summary.message = "Spec failures in ${path}";
 		}
         else if ( !passed) {
-            summary.message = "Errors in runing ${f}: Page status was ${headlineClass}";
+            summary.message = "Errors in runing ${path}: ${longMsg}}";
         }
 	}
 

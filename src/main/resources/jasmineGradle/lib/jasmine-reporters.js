@@ -118,11 +118,13 @@ jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
                                } );
                  }
                  if ( lintData.unused && lintData.unused.length ) {
-                     var msg = "Unused: "; 
-                     my$.each( lintData.unused, function( i, x ) {
-                                   msg += x.name +"; ";
-                               } );
-                     detail.append( my$("<p />").append( msg ));
+                   var msgs = my$( "<p />" ).appendTo( detail );
+                   msgs.append( "Unused: " ); 
+                   my$.each( lintData.unused, function( i, x ) {
+                               msgs.append( my$("<span />", {text:x.name, title: "line " + x.line } )).append( "; " );
+                             } );
+                     detail.append( my$("<p />", 
+                                        { text:msg, title: "line " + x.line } ));
                  }
                  if ( lintData.errors ) {
                      my$.each( lintData.errors, function( i, x ) {
