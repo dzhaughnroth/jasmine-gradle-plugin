@@ -59,8 +59,9 @@ class MultiRunnerMain {
 		Date start = new Date();
         File failuresFile = new File( buildDir, FAILURES_FILE_NAME );
         File jslintFailuresFile = new File( buildDir, JSLINT_FAILURES_FILE_NAME );
-		failuresFile.delete();
-		args.each( { 
+	failuresFile.delete();
+	jslintFailuresFile.delete();
+	args.each( { 
             def path =  it.substring( buildDir.getAbsolutePath().length() + 1 );
             println( "Running ${it} with ${path}." )
 			runHtmlUnitOnMultiRunner( "http://localhost:36018/", path ) 
