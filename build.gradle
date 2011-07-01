@@ -21,6 +21,7 @@ repositories {
 }
 
 dependencies {
+	     compile "junit:junit:3.8.2"
   groovy localGroovy()
   compile "org.codehaus.groovy:groovy:1.7.8"
   compile gradleApi()
@@ -128,13 +129,13 @@ pomConfigurator.configurePom( {
     it.pom {      
        project {
          name "Jasmine Gradle Plugin"
-         description "For testing javascript"
-         url "http://purrpackage-plugins.sourceforge.net"
+         description "Use Jasmine to test javascript both in situ and as part of a build"
+         url "https://github.com/dzhaughnroth/jasmine-gradle-plugin"
          inceptionYear "2011"
-         scm { // TODO same or other?
-//           url "http://purrpackage.git.sourceforge.net/git/gitweb-index.cgi"
-//           connection "scm:git://purrpackage.git.sourceforge.net/gitroot/purrpackage/purrpackage"
-//           developerConnection "scm:git://purrpackage.git.sourceforge.net/gitroot/purrpackage/purrpackage"
+         scm { 
+           url "http://github.com/dzhaughnroth/jasmine-gradle-plugin"
+           connection "scm:git://github.com/dzhaughnroth/jasmine-gradle-plugin"
+           developerConnection "scm:git://github.com/dzhaughnroth/jasmine-gradle-plugin"
        }
     }
 } } );

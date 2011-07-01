@@ -65,7 +65,7 @@ jasmineGradle = (function()
     };
     
     var checkRunner = function( runnerFrameName ) {
-        var node = document[runnerFrameName];
+        var node = document.getElementById( runnerFrameName ).contentWindow;
         if ( node && node.apiReporter && node.apiReporter.finished ) {
             var results = [];
             $.each( node.apiReporter.results(), function( i, r ) {

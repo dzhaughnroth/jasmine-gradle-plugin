@@ -12,6 +12,6 @@ Support for running Jasmine tests in a Gradle build. And more.
 
 * jasmineGenerate creates template files and required libraries in src/test/javascript
 
-* Build to play nice with others.
+* Built to play nice with others.
 
 Same licensing as Jasmine and JSLint.
