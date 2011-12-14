@@ -67,11 +67,14 @@ class JasmineRunnerTask extends DefaultTask {
 		project.ant.java( classpath:"${project.configurations.jasmineGradlePlugin.asPath}",
 			fork:true, 
 			resultProperty:"jasmineResult",
-            classname:MultiRunnerMain.class.getName())  {
+			classname:MultiRunnerMain.class.getName())  {
 			arg( value: "${project.name}" );
 			arg( value: "build" );
 			tree.each {
-				arg( value:"${it}" )
+				def itUri = it.toURI();
+				def relative = project.buildDir.toURI().relativize( itUri );
+				project.logger.info( "URI ${relative} to ${project.buildDir.toURI()} from ${itUri}" );
+				arg( value:"${relative}" )
 			}
 		}
 		project.logger.log( LogLevel.INFO, "Jasmine-gradle-plugin result: " + ant.jasmineResult );

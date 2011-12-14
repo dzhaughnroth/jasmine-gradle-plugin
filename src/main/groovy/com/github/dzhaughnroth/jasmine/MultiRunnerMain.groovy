@@ -62,15 +62,13 @@ class MultiRunnerMain {
 	failuresFile.delete();
 	jslintFailuresFile.delete();
 	args.each( { 
-            def path =  it.substring( buildDir.getAbsolutePath().length() + 1 );
+            def path = it;
             println( "Running ${it} with ${path}." )
 			runHtmlUnitOnMultiRunner( "http://localhost:36018/", path ) 
 		} );
 		long elapsed = System.currentTimeMillis() - start.time;
 		File summaryOut = new File( buildDir, "jasmine-summary.html" );
-		String absBuildPath = buildDir.absolutePath;
 		File jasmineDir = new File( buildDir, "jasmine" );
-		String jasmineDirPath = jasmineDir.absolutePath;	
 		def writer = new StringWriter()
 		def html = new MarkupBuilder(writer)
 		html.html {
@@ -87,7 +85,7 @@ class MultiRunnerMain {
 					li {
 						mkp.yield( "${x.passed ? 'Passed' : 'FAILED'} page " );
 						def relPath = x.path;
-						def pathToSrc = "../src/" + x.path; //x.file.absolutePath.substring( jasmineDirPath.length() + 1 );
+						def pathToSrc = "../src/" + x.path; 
 						a( href:"../${pathToSrc}" ) { 
 							mkp.yield( "${pathToSrc}" ) }
                         a( href:relPath ) { mkp.yield( "(Build Copy)" ) }
